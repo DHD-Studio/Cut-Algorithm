@@ -5,6 +5,7 @@
         "xiosbase": "cpp",
         "xutility": "cpp",
         "iostream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "fstream": "cpp"
     }
 }

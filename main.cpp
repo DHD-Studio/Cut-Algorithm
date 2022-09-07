@@ -4,33 +4,32 @@
 #include <algorithm>
 using namespace std;
 
-const double num_max = 5800;
-const double num_min = 300;
+const double unit_length = 5800;
+const double cut_waste = 2;
 
 int main(){
-    long double n;
+    long double n,m;
     vector<long double> nums;
-    while(cin >> n){
-        nums.push_back(n);
+    ifstream fin;
+    ofstream fout;
+
+    fin.open("input.txt");
+    while(fin >> n >> m){
+        for(int i=0;i<n;i++){
+            nums.push_back(m);
+        }
     }
-    ifstream in;
-    ofstream out;
-    in.open("./input.txt");
-    if(in.fail()){
-        cout << "input file opening failed";
-        exit(1);
-    }
-    out.open("output.txt");
-    if(out.fail()){
-        cout << "output file opening failed";
-        exit(1);
-    }
+    fin.close();
+
     sort(nums.begin(),nums.end());
 
+    
 
+    fout.open("output.txt");
+    for(int i=0;i<nums.size();i++){
+        fout << nums[i] << " ";
+    }
+    fout.close();
 
-
-    in.close();
-    out.close();
     return 0;
 }
