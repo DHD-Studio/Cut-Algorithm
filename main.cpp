@@ -26,16 +26,18 @@ void solve(){
 
     fin.close(); // 結束讀取
     sort(nums.begin(),nums.end()); // 將長度由小到大排序
-    int aluminum; // 要使用多少支料
-    double remain_length = unit_length; // 將剩下長度設為原長度
+    int aluminum=0; // 要使用多少支料
+    double remain_length = unit_length; // 剩下的長度 初始值為 unit_length
     fout.open("output.txt"); // 打開輸出用檔案
     vector<double> ans; // 一支鋁料切成的長度 每個空間一支
     size_t index; // index = 尋找可切割用的索引
     double waste=0; // waste = 浪費掉的鋁料長度總和
     while(1){ // while 一圈代表使用一支 5800mm 的鋁料
+        remain_length = unit_length; //重設長度
+        ans.clear(); // 清除已計算的內容給下一支鋁料紀錄使用
         while(remain_length>*min_element(nums.begin(),nums.end())+cut_waste){ // 當剩餘長度還能再切割
             index = nums.size(); // 從剩下的最大開始找
-            while(!remain_length<nums[index]+cut_waste){ // 取剩下能切割之中最長的
+            while(remain_length>nums[index]+cut_waste){ // 取剩下能切割之中最長的
                 index--;
             }
 
@@ -44,18 +46,17 @@ void solve(){
             nums.erase(nums.begin() + index); // 移除已切好的鋁料資料
         } // 計算所有能夠切割出來的鋁料長度並從 nums 中刪除
 
-        for(int i=0;i<ans.size();i++){ // 列出單支鋁料能夠切割出的長度
+        for(size_t i=0;i<ans.size();i++){ // 列出單支鋁料能夠切割出的長度
             fout << ans[i] << " ";
         }
 
         waste += unit_length - remain_length; // 將單支浪費的鋁料加進浪費的總和內
-        remain_length = unit_length; //重設長度
         aluminum++; // 5800mm 鋁料使用數+1
-        ans.clear(); // 清除已計算的內容給下一支鋁料紀錄使用
         fout << endl;
     }
 
-    fout << "需要使用 " << aluminum << " 支鋁料";
+    fout << aluminum;
+    // fout << "需要使用 " << aluminum << " 支鋁料";
     fout.close(); // 關閉輸出檔案
     return;
 }
