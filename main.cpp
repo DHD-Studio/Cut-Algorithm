@@ -61,8 +61,9 @@ void solve(){
             ans.push_back(nums[index]); // 計算好的放入答案欄中
             nums.erase(nums.begin() + index); // 移除已切好的鋁料資料
         } // 計算所有能夠切割出來的鋁料長度並從 nums 中刪除
-
-        waste += unit_length - remain_length; // 將單支浪費的鋁料加進浪費的總和內
+        
+        fout << "This time waste " << remain_length << " mm of aluninum." << endl;
+        waste += remain_length; // 將單支浪費的鋁料加進浪費的總和內
         aluminum++; // 5800mm 鋁料使用數+1
         // cout << "nums =";
         // print_nums(nums);
@@ -73,8 +74,8 @@ void solve(){
             break;
     }
 
-    fout << "Need to use " << aluminum << "*5800mm aluminum materials.";
-    // fout << "需要使用 " << aluminum << " 支鋁料";
+    fout << "Need to use " << aluminum << "*5800mm aluminum materials." << endl;
+    fout << "Wasted " << waste << " mm of aluminum.";
     fout.close(); // 關閉輸出檔案
     return;
 }
