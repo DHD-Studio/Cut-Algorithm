@@ -34,8 +34,10 @@ void solve(){
     fin.close(); // 結束讀取
     sort(nums.begin(),nums.end()); // 將長度由小到大排序
     fout.open("output.txt"); // 打開輸出用檔案
-    fout << "There is " << nums.size() << " datas." << endl << endl;
+    fout << "There are " << nums.size() << " datas." << endl << endl;
+    fout << "There are all of the data index: " << endl;
     print_v(nums);
+    fout << endl;
     int aluminum=0; // 要使用多少支料
     double remain_length = unit_length; // 剩下的長度 初始值為 unit_length
     vector<double> ans; // 一支鋁料切成的長度 每個空間一支
@@ -71,7 +73,7 @@ void solve(){
             break;
     }
 
-    fout << aluminum;
+    fout << "Need to use " << aluminum << "*5800mm aluminum materials.";
     // fout << "需要使用 " << aluminum << " 支鋁料";
     fout.close(); // 關閉輸出檔案
     return;
