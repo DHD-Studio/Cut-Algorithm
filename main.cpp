@@ -35,7 +35,7 @@ void solve(){
     sort(nums.begin(),nums.end()); // 將長度由小到大排序
     fout.open("output.txt"); // 打開輸出用檔案
     fout << "There are " << nums.size() << " datas." << endl << endl;
-    fout << "There are all of the data index: " << endl;
+    fout << "There are all of the data content: " << endl;
     print_v(nums);
     fout << endl;
     int aluminum=0; // 要使用多少支料
@@ -49,9 +49,9 @@ void solve(){
         remain_length = unit_length; //重設長度
         ans.clear(); // 清除已計算的內容給下一支鋁料紀錄使用
 
-        while(remain_length>*min_element(nums.begin(),nums.end())+cut_waste){ // 當剩餘長度還能再切割
+        while(remain_length>=*min_element(nums.begin(),nums.end())+cut_waste){ // 當剩餘長度還能再切割
             index = nums.size()-1; // 從剩下的最大開始找
-            while(remain_length<nums[index]+cut_waste && index>0/*index*/){ // 取剩下能切割之中最長的
+            while(remain_length<=nums[index]+cut_waste && index>=0/*index*/){ // 取剩下能切割之中最長的
                 index--;
             }
             if(index>0)
