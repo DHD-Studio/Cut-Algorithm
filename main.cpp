@@ -51,14 +51,14 @@ void solve(){
 
         while(remain_length>=*min_element(nums.begin(),nums.end())+cut_waste){ // 當剩餘長度還能再切割
             index = nums.size()-1; // 從剩下的最大開始找
-            while(remain_length<=nums[index]+cut_waste && index>=0/*index*/){ // 取剩下能切割之中最長的
+            while(remain_length<=nums.at(index)+cut_waste && index>=0/*index*/){ // 取剩下能切割之中最長的
                 index--;
             }
             if(index>0)
-                remain_length = cut(remain_length,nums[index]); // 計算切割後長度
+                remain_length = cut(remain_length,nums.at(index)); // 計算切割後長度
             else
                 break;
-            ans.push_back(nums[index]); // 計算好的放入答案欄中
+            ans.push_back(nums.at(index)); // 計算好的放入答案欄中
             nums.erase(nums.begin() + index); // 移除已切好的鋁料資料
         } // 計算所有能夠切割出來的鋁料長度並從 nums 中刪除
         
@@ -73,7 +73,6 @@ void solve(){
         if(!index)
             break;
     }
-
     fout << "Need to use " << aluminum << "*5800mm aluminum materials." << endl;
     fout << "Wasted " << waste << " mm of aluminum.";
     fout.close(); // 關閉輸出檔案

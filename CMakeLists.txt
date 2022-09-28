@@ -6,6 +6,7 @@ enable_testing()
 
 add_executable(cut ./main.cpp)
 
+SET(CMAKE_BUILD_TYPE "Release")
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
