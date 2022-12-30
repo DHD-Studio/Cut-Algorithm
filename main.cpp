@@ -58,12 +58,16 @@ void solve(){
             }
             if(index > 0){
                 remain_length = cut(remain_length,nums.at(index)); // 計算切割後長度
+                ans.push_back(nums.at(index)); // 計算好的放入答案欄中
+                nums.erase(nums.begin() + index); // 移除已切好的鋁料資料
+            }else if(index == 0){ // 最短的鋁料被使用
+                remain_length = cut(remain_length,nums.at(index));
+                ans.push_back(nums.at(index)); // 計算好的放入答案欄中
+                break;
             }else{
                 break;
             }
 
-            ans.push_back(nums.at(index)); // 計算好的放入答案欄中
-            nums.erase(nums.begin() + index); // 移除已切好的鋁料資料
         } // 計算所有能夠切割出來的鋁料長度並從 nums 中刪除
 
         fout << "This time waste " << remain_length << " mm of aluninum." << endl;
