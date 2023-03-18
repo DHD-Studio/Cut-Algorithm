@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <filesystem>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ void print_v(vector<double> nums){
 
 void solve(){
     vector<double> nums; // nums = 每一支鋁料需要的長度
-    fin.open("input.txt"); // 開啟輸入用檔案
+    fin.open(std::filesystem::current_path() / "input.txt"); // 開啟輸入用檔案
     double n,m; // n = 同長度鋁料需要的數量 m = 鋁料長度
 
     while(fin >> n >> m){ // 讀取檔案要求的鋁料長度資料
@@ -35,7 +36,7 @@ void solve(){
 
     fin.close(); // 結束讀取
     sort(nums.begin(), nums.end()); // 將長度由小到大排序
-    fout.open("output.txt"); // 打開輸出用檔案
+    fout.open(std::filesystem::current_path() / "output.txt"); // 打開輸出用檔案
     fout << "There are " << nums.size() << " datas." << endl << endl;
     fout << "There are all of the data content: " << endl;
     print_v(nums);
